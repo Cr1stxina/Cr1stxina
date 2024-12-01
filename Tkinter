@@ -1,0 +1,35 @@
+#https://replit.com/@cristinay73/ToDoList-1#GUI%20com%20Tkinter
+#link da pasta do replit com os arquivos de imagem em png
+
+import tkinter as tk
+
+#Criação da janela principal com título e dedfinição de tamanho
+root = tk.Tk() #Inicia a janela principal
+root.title("Interface Gráfica com Tkinter") #Coloca o título da janela
+root.geometry("400x200") #Define o tamanho da janela
+
+#Define a imagem como fundo
+imagem = tk.PhotoImage(file="imagem.png")
+label_fundo = tk.Label(root, image=imagem)
+label_fundo.place(x=0, y=0, relwidth=1, relheight=1)
+
+#Criação de um rótulo com texto para aparecer na tela
+label_message = tk.Label(root, text="Bem-vindo à sua primeira interface gráfica!", font=("Arial", 10))
+label_message.pack(pady=10)
+
+# Função para clicar no botão
+def botao_clicado():
+    label_message.config(text="Botão clicado!", font=("Arial", 14), fg="black")
+
+#Define a imagem do botão, tenta carregar imagem e apresenta erro caso não consiga
+try:
+    imagem_botao = tk.PhotoImage(file="botao.png") 
+    botao_clique = tk.Button(root, image=imagem_botao, command=botao_clicado, borderwidth=0)
+    botao_clique.pack(pady=5)  # Posiciona o botão na interface
+except Exception as e:
+    print(f"Erro ao carregar a imagem do botão: {e}")
+    botao_clique = tk.Button(root, text="Clique Aqui!", font=("Arial", 12), command=botao_clicado)
+    botao_clique.pack(pady=5)
+
+# Loop principal
+root.mainloop()
